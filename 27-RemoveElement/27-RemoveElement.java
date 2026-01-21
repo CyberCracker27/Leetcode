@@ -1,0 +1,14 @@
+// Last updated: 21/01/2026, 22:11:23
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int c=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==val){
+                continue;
+            }
+            nums[c]=nums[i];
+            c++;
+        }
+        return c;
+    }
+}
