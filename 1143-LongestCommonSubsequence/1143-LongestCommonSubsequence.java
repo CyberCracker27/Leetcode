@@ -1,24 +1,23 @@
-// Last updated: 6/6/2026, 10:45:51 AM
+// Last updated: 6/6/2026, 11:19:39 AM
 1class Solution {
 2    public int longestCommonSubsequence(String text1, String text2) {
-3        HashMap<String,Integer> map=new HashMap<>();
-4        return rec(text1,text2,0,0,map);
-5    }
-6    public int rec(String t1,String t2,int left,int right,HashMap<String,Integer> map){
-7        if(left>=t1.length() || right>=t2.length()){
-8            return 0;
-9        }
-10        String s=left+","+right;
-11        int ans;
-12        if(map.containsKey(s)){
-13            return map.get(s);
-14        }
-15        if(t1.charAt(left)==t2.charAt(right)){
-16            ans=1+rec(t1,t2,left+1,right+1,map);
-17        }else{
-18            ans=Math.max(rec(t1,t2,left+1,right,map),rec(t1,t2,left,right+1,map));
-19        }
-20        map.put(s,ans);
-21        return ans;
-22    }
-23}
+3        int m=text1.length();
+4        int n=text2.length();
+5        int[][] dp=new int[m][n];
+6        for(int[] d:dp) Arrays.fill(d,-1);
+7        return rec(text1,text2,0,0,dp);
+8    }
+9    public int rec(String t1,String t2,int left,int right,int[][] dp){
+10        if(left>=t1.length() || right>=t2.length()){
+11            return 0;
+12        }
+13        if(dp[left][right]!=-1){
+14            return dp[left][right];
+15        }
+16        if(t1.charAt(left)==t2.charAt(right)){
+17            return dp[left][right]=1+rec(t1,t2,left+1,right+1,dp);
+18        }else{
+19            return dp[left][right]=Math.max(rec(t1,t2,left+1,right,dp),rec(t1,t2,left,right+1,dp));
+20        }
+21    }
+22}
