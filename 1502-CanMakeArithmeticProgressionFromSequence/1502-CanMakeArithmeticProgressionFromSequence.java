@@ -1,17 +1,15 @@
-// Last updated: 6/9/2026, 9:38:58 AM
+// Last updated: 6/9/2026, 9:41:29 AM
 1class Solution {
-2    public int pivotInteger(int n) {
-3        int i=1,j=n,c=-1;
-4        int leftc=1,rightc=n;
-5        while(i<j){
-6            if(leftc<=rightc){
-7                i++;
-8                leftc+=i;
-9            }else{
-10                j--;
-11                rightc+=j;
-12            }
-13        }
-14        return (leftc==rightc)?i:-1;
-15    }
-16}
+2    public boolean isPalindrome(int x) {
+3        if(x<0){
+4            return false;
+5        }
+6        int rev=0;
+7        int temp=x;
+8        while(temp!=0){
+9            rev=(rev*10)+temp%10;
+10            temp/=10;
+11        }
+12        return (x==rev)?true:false;
+13    }
+14}
