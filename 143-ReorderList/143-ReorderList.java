@@ -1,4 +1,4 @@
-// Last updated: 6/9/2026, 9:38:23 PM
+// Last updated: 6/9/2026, 10:07:46 PM
 1/**
 2 * Definition for singly-linked list.
 3 * public class ListNode {
@@ -10,29 +10,31 @@
 9 * }
 10 */
 11class Solution {
-12    public void reorderList(ListNode head) {
-13        ListNode slow=head;
-14        ListNode fast=head;
-15        while(fast!=null && fast.next!=null){
-16            slow=slow.next;
-17            fast=fast.next.next;
-18        }
-19        ListNode curr=slow,prev=null;
-20        while(curr!=null){
-21            ListNode t=curr.next;
-22            curr.next=prev;
-23            prev=curr;
-24            curr=t;
-25        }
-26        ListNode first=head;
-27        ListNode second=prev;
-28        while(first.next!=null && second.next!=null){
-29            ListNode t1=first.next;
-30            ListNode t2=second.next;
-31            first.next=second;
-32            second.next=t1;
-33            first=t1;
-34            second=t2;
-35        }
-36    }
-37}
+12    public ListNode reverseKGroup(ListNode head, int k) {
+13        List<Integer> li=new ArrayList<>();
+14        ListNode temp=head;
+15        int c=0;
+16        while(temp!=null){
+17            li.add(temp.val);
+18            temp=temp.next;
+19            c++;
+20        }
+21        for(int start=0;start+k<=c;start+=k){
+22            int left=start,right=start+k-1;
+23            while(left<right){
+24                int a=li.get(left);
+25                li.set(left,li.get(right));
+26                li.set(right,a);
+27                left++;
+28                right--;
+29            }
+30        }
+31        temp=head;
+32        int i=0;
+33        while(temp!=null){
+34            temp.val=li.get(i++);
+35            temp=temp.next;
+36        }
+37        return head;
+38    }
+39}
