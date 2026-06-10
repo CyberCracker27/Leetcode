@@ -1,4 +1,4 @@
-// Last updated: 6/10/2026, 1:28:26 PM
+// Last updated: 6/10/2026, 1:31:07 PM
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -15,15 +15,15 @@
 14 * }
 15 */
 16class Solution {
-17    public List<Integer> preorderTraversal(TreeNode root) {
+17    public List<Integer> postorderTraversal(TreeNode root) {
 18        List<Integer> li=new ArrayList<>();
 19        rec(root,li);
 20        return li;
 21    }
 22    public void rec(TreeNode root,List<Integer> li){
-23        if(root==null) return;
-24        li.add(root.val);
-25        rec(root.left,li);
-26        rec(root.right,li);
+23        if(root==null) return ;
+24        rec(root.left,li);
+25        rec(root.right,li);
+26        li.add(root.val);
 27    }
 28}
