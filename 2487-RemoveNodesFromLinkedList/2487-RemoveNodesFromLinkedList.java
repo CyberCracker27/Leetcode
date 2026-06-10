@@ -1,4 +1,4 @@
-// Last updated: 6/10/2026, 10:23:44 AM
+// Last updated: 6/10/2026, 10:42:09 AM
 1/**
 2 * Definition for singly-linked list.
 3 * public class ListNode {
@@ -10,40 +10,27 @@
 9 * }
 10 */
 11class Solution {
-12    public ListNode removeNodes(ListNode head) {
-13        ListNode prev=null;
-14        ListNode curr=head;
-15        while(curr!=null){
-16            ListNode temp=curr.next;
-17            curr.next=prev;
-18            prev=curr;
-19            curr=temp;
-20        }
-21        ListNode temp=prev;
-22        
-23        int a=temp.val;
-24        temp=temp.next;
-25        ListNode temp1=new ListNode(a);
-26        ListNode temp2=temp1;
-27        while(temp!=null){
-28            if(temp.val>=a){
-29                a=temp.val;
-30                ListNode t=new ListNode(a);
-31                temp2.next=t;
-32                temp2=temp2.next;
-33            }
-34            temp=temp.next;
-35        }
-36
-37        prev=null;
-38        curr=temp1;
-39        while(curr!=null){
-40            ListNode temp3=curr.next;
-41            curr.next=prev;
-42            prev=curr;
-43            curr=temp3;
-44        }
-45
-46        return prev;
-47    }
-48}
+12    public int[] nextLargerNodes(ListNode head) {
+13        List<Integer> li=new ArrayList<>();
+14        ListNode temp=head;
+15        while(temp!=null){
+16            int a=temp.val;
+17            int c=0;
+18            ListNode temp1=temp.next;
+19            while(temp1!=null){
+20                if(a<temp1.val){
+21                    c=temp1.val;
+22                    break;
+23                }
+24                temp1=temp1.next;
+25            }
+26            li.add(c);
+27            temp=temp.next;
+28        }
+29        int arr[]=new int[li.size()];
+30        for(int i=0;i<li.size();i++){
+31            arr[i]=li.get(i);
+32        }
+33        return arr;
+34    }
+35}
