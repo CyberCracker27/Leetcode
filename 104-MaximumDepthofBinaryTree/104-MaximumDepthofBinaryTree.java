@@ -1,4 +1,4 @@
-// Last updated: 6/10/2026, 2:28:07 PM
+// Last updated: 6/10/2026, 2:41:28 PM
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -15,24 +15,31 @@
 14 * }
 15 */
 16class Solution {
-17    public int maxDepth(TreeNode root) {
-18        Queue<TreeNode> q=new LinkedList<>();
-19        if(root==null) return 0;
-20        q.offer(root);
-21        int c=0;
-22        while(!q.isEmpty()){
-23            c++;
-24            int x=q.size();
-25            for(int i=0;i<x;i++){
-26                TreeNode temp=q.poll();
-27                if(temp.left!=null){
-28                    q.offer(temp.left);
-29                }
-30                if(temp.right!=null){
-31                    q.offer(temp.right);
-32                }
-33            }
-34        }
-35        return c;
-36    }
-37}
+17    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+18        List<List<Integer>> f=new ArrayList<>();
+19        Queue<TreeNode> q=new LinkedList<>();
+20        List<Integer> temp1=new ArrayList<>();
+21        if(root==null) return f;
+22        temp1.add(root.val);
+23        f.add(temp1);
+24        q.offer(root);
+25        while(!q.isEmpty()){
+26            List<Integer> temp=new ArrayList<>();
+27            int x=q.size();
+28            for(int i=0;i<x;i++){
+29                TreeNode t=q.poll();
+30                if(t.left!=null){
+31                    q.offer(t.left);
+32                    temp.add(t.left.val);
+33                }
+34                if(t.right!=null){
+35                    q.offer(t.right);
+36                    temp.add(t.right.val);
+37                }
+38            }
+39            if(temp.size()>0) f.add(temp);
+40        }
+41        Collections.reverse(f);
+42        return f;
+43    }
+44}
