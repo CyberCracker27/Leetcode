@@ -1,20 +1,23 @@
-// Last updated: 6/12/2026, 2:22:10 PM
+// Last updated: 6/12/2026, 3:46:58 PM
 1class Solution {
-2    public List<List<Integer>> subsets(int[] nums) {
-3        List<List<Integer>> ans=new ArrayList<>();
-4        List<Integer> temp=new ArrayList<>();
-5        ans.add(new ArrayList<>(temp));
-6        method(ans,temp,nums,0);
-7        return ans;
-8    }
-9    public void method(List<List<Integer>> ans,List<Integer> temp,int[] nums,int start){
-10        
-11        for(int i=start;i<nums.length;i++){
-12            temp.add(nums[i]);
-13            ans.add(new ArrayList<>(temp));
-14            method(ans,temp,nums,i+1);
-15        }
-16        if(temp.size()>0)
-17        temp.remove(temp.size()-1);
-18    }
-19}
+2    public String getPermutation(int n, int k) {
+3        List<Integer> arr=new ArrayList<>();
+4        int f=1;
+5        for(int i=1;i<=n;i++){
+6            arr.add(i);
+7            f*=i;
+8        }
+9        f/=n;
+10        k-=1;
+11        String s="";
+12        while(n>0){
+13            int i=k/f;
+14            s=s+arr.get(i);
+15            arr.remove(i);
+16            n-=1;
+17            k%=f;
+18            if(n!=0) f/=n;
+19        }
+20        return s;
+21    }
+22}
