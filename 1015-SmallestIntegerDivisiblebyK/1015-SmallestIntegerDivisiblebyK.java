@@ -1,11 +1,22 @@
-// Last updated: 6/18/2026, 6:49:56 AM
+// Last updated: 6/18/2026, 6:59:02 AM
 1class Solution {
-2    public int smallestRepunitDivByK(int k) {
-3        int rem=0;
-4        for(int i=1;i<=k;i++){
-5            rem=(rem*10+1)%k;
-6            if(rem==0) return i;
-7        }
-8        return -1;
-9    }
-10}
+2    public List<Integer> selfDividingNumbers(int left, int right) {
+3        List<Integer> a=new ArrayList<>();
+4        for(int i=left;i<=right;i++){
+5            int temp=i;
+6            boolean f=true;
+7            while(temp!=0){
+8                int c=temp%10;
+9                if(c==0 || i%c!=0){
+10                    f=false;
+11                    break;
+12                }
+13                temp/=10;
+14            }
+15            if(f){
+16                a.add(i);
+17            }
+18        }
+19        return a;
+20    }
+21}
