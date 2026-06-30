@@ -1,25 +1,25 @@
-// Last updated: 6/30/2026, 9:07:06 AM
+// Last updated: 6/30/2026, 9:23:49 AM
 1class Solution {
-2    public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {
-3        double[] maxprob=new double[n];
-4        maxprob[start_node]=1.0;
-5        for(int i=0;i<n-1;i++){
-6            boolean updated=false;
-7            for(int j=0;j<edges.length;j++){
-8                int u=edges[j][0];
-9                int v=edges[j][1];
-10                double prob=succProb[j];
-11                if(maxprob[u]*prob>maxprob[v]){
-12                    maxprob[v]=maxprob[u]*prob;
-13                    updated=true;
-14                }
-15                if(maxprob[v]*prob>maxprob[u]){
-16                    maxprob[u]=maxprob[v]*prob;
-17                    updated=true;
-18                }
+2    public int longestConsecutive(int[] nums) {
+3        if(nums.length==0) return 0;
+4        int max=1;
+5        Arrays.sort(nums);
+6        int c=1;
+7        for(int i=1;i<nums.length;i++){
+8            if(nums[i]==nums[i-1]){
+9                continue;
+10            }
+11            if(nums[i-1]+1==nums[i]){
+12                c++;
+13            }
+14            else{
+15                if(c>max){
+16                    max=c;
+17                }
+18                c=1;
 19            }
-20            if(!updated) break;
-21        }
-22        return maxprob[end_node];
+20        }
+21        max=Math.max(max,c);
+22        return max;
 23    }
 24}
