@@ -1,0 +1,15 @@
+// Last updated: 7/13/2026, 8:52:37 PM
+class Solution {
+    public int countNumbersWithUniqueDigits(int n) {
+        if(n==0){
+            return 1;
+        }
+        int total=10;
+        int prod=9;
+        for(int i=2;i<=n;i++){
+            total+=prod*(11-i);
+            prod*=11-i;
+        }
+        return total;
+    }
+}
