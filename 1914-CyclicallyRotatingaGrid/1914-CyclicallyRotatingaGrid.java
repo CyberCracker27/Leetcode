@@ -1,13 +1,11 @@
-// Last updated: 7/25/2026, 6:55:21 AM
+// Last updated: 7/25/2026, 7:00:57 AM
 1class Solution {
-2    public int countVowelStrings(int n) {
-3        int a=1,e=1,i=1,o=1,u=1;
-4        while(n-->1){
-5            o+=u;
-6            i+=o;
-7            e+=i;
-8            a+=e;
-9        }
-10        return a+e+i+o+u;
-11    }
-12}
+2    public long zeroFilledSubarray(int[] nums) {
+3        long count=0,streak=0;
+4        for(int num:nums){
+5            streak=(num==0)?streak+1:0;
+6            count+=streak;
+7        }
+8        return count;
+9    }
+10}
