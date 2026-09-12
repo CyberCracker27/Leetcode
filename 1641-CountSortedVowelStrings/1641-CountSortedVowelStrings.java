@@ -1,0 +1,13 @@
+// Last updated: 9/12/2026, 7:31:56 AM
+class Solution {
+    public int countVowelStrings(int n) {
+        int a=1,e=1,i=1,o=1,u=1;
+        while(n-->1){
+            o+=u;
+            i+=o;
+            e+=i;
+            a+=e;
+        }
+        return a+e+i+o+u;
+    }
+}
