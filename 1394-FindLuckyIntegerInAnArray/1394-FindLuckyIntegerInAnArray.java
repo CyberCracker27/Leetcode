@@ -1,0 +1,16 @@
+// Last updated: 9/12/2026, 7:35:22 AM
+class Solution {
+    public int findLucky(int[] arr) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int n:arr){
+            map.put(n,map.getOrDefault(n,0)+1);
+        }
+        int a=-1;
+        for(int key : map.keySet()){
+            if(map.get(key)==key){
+                a=key;
+            }
+        }
+        return a;
+    }
+}
