@@ -1,0 +1,14 @@
+// Last updated: 9/12/2026, 7:23:00 AM
+class Solution {
+    public int kItemsWithMaximumSum(int numOnes, int numZeros, int numNegOnes, int k) {
+        if(k<=numOnes){
+            return k;
+        }
+        if(k<=(numOnes+numZeros)){
+            return numOnes;
+        }
+        else{
+            return numOnes-(k-numZeros-numOnes);
+        }
+    }
+}
