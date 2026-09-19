@@ -1,21 +1,48 @@
-// Last updated: 9/19/2026, 7:02:15 AM
+// Last updated: 9/19/2026, 7:18:47 AM
 1class Solution {
-2    public int[] findMissingAndRepeatedValues(int[][] grid) {
-3        int arr[]=new int[2];
-4        Set<Integer> s=new HashSet<>();
-5        int c=grid[0].length*grid[0].length;
-6        for(int i=0;i<grid.length;i++){
-7            for(int j=0;j<grid[0].length;j++){
-8                if(!s.add(grid[i][j])){
-9                    arr[0]=grid[i][j];
-10                }
-11            }
-12        }
-13        for(int i=1;i<=c;i++){
-14            if(!s.contains(i)){
-15                arr[1]=i;
-16            }
-17        }
-18        return arr;
-19    }
-20}
+2    public int numSpecial(int[][] mat) {
+3        int c=0;
+4        for(int i=0;i<mat.length;i++){
+5            boolean a=true;
+6            boolean f=false;
+7            for(int j=0;j<mat[0].length;j++){
+8                if(mat[i][j]==1){
+9                    f=true;
+10                    int l=i-1,m=j;
+11                    while(l>=0){
+12                        if(mat[l][m]==1){
+13                            a=false;
+14                        }
+15                        l--;
+16                    }
+17                    l=i+1;
+18                    while(l<mat.length){
+19                        if(mat[l][m]==1){
+20                            a=false;
+21                        }
+22                        l++;
+23                    }
+24                    l=i;
+25                    m=j-1;
+26                    while(m>=0){
+27                        if(mat[l][m]==1){
+28                            a=false;
+29                        }
+30                        m--;
+31                    }
+32                    m=j+1;
+33                    while(m<mat[0].length){
+34                        if(mat[l][m]==1){
+35                            a=false;
+36                        }
+37                        m++;
+38                    }
+39                }
+40            }
+41            if(a&&f){
+42                c++;
+43            }
+44        }
+45        return c;
+46    }
+47}
